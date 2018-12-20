@@ -9,7 +9,7 @@ let _ = require('underscore');
 
 function hasError(data, message) {
     if (data.error) {
-        var errorMessage = message ? message : JSON.parse(data.error.message).message;
+        var errorMessage = message ? message : data.error.message;
         vscode.window.showErrorMessage(errorMessage);
         return true;
     }
@@ -55,8 +55,8 @@ function previewFileFromNetSuite(file) {
         
         var relativeFileName = nsRestClient.getRelativePath(file.fsPath);
         var tempFolder = vscode.workspace.getConfiguration('netSuiteUpload')['tempFolder'];
-        var filePathArray = (relativeFileName.split('.')[0] + '.preview.' + relativeFileName.split('.')[1]).split('\\');
-        var newPreviewFile = tempFolder + '\\' + filePathArray[filePathArray.length-1];
+        var filePathArray = (relativeFileName.split('.')[0] + '.preview.' + relativeFileName.split('.')[1]).split(path.sep);
+        var newPreviewFile = tempFolder + path.sep + filePathArray[filePathArray.length-1];
 
         fs.writeFile(newPreviewFile, data[0].content.toString());
 

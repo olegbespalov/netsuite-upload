@@ -35,6 +35,12 @@ Right-click the file/folder in the navigation panel to see the options:
 - If not yet created, create one or update the project `settings.json` inside the `.vscode` folder
 - Copy the following code to `settings.json` and update with your settings
 
+##### OAuth Authentication
+- If you wish to use OAuth authentication instead of basic authentication you can leave the authentication header blank and use the OAuth settings properties
+- First generate an Integration record in NetSuite, make sure the 'token based authentication' scheme is checked, and save the token and secret
+- Second log into a role you wish to use for authentication and from the manage tokens center generate a new token and secret using the Integration from the previous step
+- Input the 4 values from above in the corresponding settings options along with the account number in the realm property
+
 **settings.json**
 ```javascript
 {
@@ -45,7 +51,17 @@ Right-click the file/folder in the navigation panel to see the options:
 	"netSuiteUpload.restlet": "<RESTlet URL>",
 
 	// Temporary folder (e.g. C:\\temp) - used for storing compared file
-	"netSuiteUpload.tempFolder": "<TEMP FOLDER PATH>"
+	"netSuiteUpload.tempFolder": "<TEMP FOLDER PATH>",
+	// Oauth Integration Key
+	"netSuiteUpload.netsuiteKey": "<INTEGRATION KEY>",
+    // Oauth Integration Secret
+	"netSuiteUpload.netsuiteSecret": "<INTEGRATION SECRET>",
+    // Oauth Consumer Key
+	"netSuiteUpload.consumerToken": "<CONSUMER KEY>",
+    // Oauth Consumer Secret
+	"netSuiteUpload.consumerSecret": "<CONSUMER SECRET>",
+    // Account number
+	"netSuiteUpload.realm": "<ACCOUNT NUMBER>"
 }
 ```
 

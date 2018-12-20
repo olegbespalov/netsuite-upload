@@ -1,8 +1,8 @@
 {
   "name": "netsuite-upload",
-  "displayName": "NetSuite Upload",
+  "displayName": "NetSuite Upload (OAuth)",
   "description": "NetSuite Upload Extension used for managing of SuiteScript files",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "publisher": "tomastvrdy",
   "engines": {
     "vscode": "^1.5.0"
@@ -46,6 +46,26 @@
         "netSuiteUpload.tempFolder": {
           "type": "string",
           "description": "Temporary folder (e.g. C:\\temp)"
+        },
+        "netSuiteUpload.netsuiteKey": {
+          "type": "string",
+          "description": "NetSuite Integration Key"
+        },
+        "netSuiteUpload.netsuiteSecret": {
+          "type": "string",
+          "description": "NetSuite Integration Secret"
+        },
+        "netSuiteUpload.consumerToken": {
+          "type": "string",
+          "description": "NetSuite Consumer Token"
+        },
+        "netSuiteUpload.consumerSecret": {
+          "type": "string",
+          "description": "NetSuite Consumer Secret"
+        },
+        "netSuiteUpload.realm": {
+          "type": "string",
+          "description": "NetSuite account number"
         }
       }
     },
@@ -140,9 +160,11 @@
     "@types/mocha": "^2.2.32"
   },
   "dependencies": {
+    "crypto": "^1.0.1",
     "esprima": "3.1.3",
     "estraverse": "4.2.0",
     "node-rest-client": "2.0.1",
+    "oauth-1.0a": "^2.2.5",
     "underscore": "1.8.3"
   }
 }
