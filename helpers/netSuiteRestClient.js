@@ -72,8 +72,8 @@ function getData(type, objectPath, callback) {
     });
 }
 
-function postFile(file, content, callback) {
-    postData('file', file.fsPath, content, callback);
+function postFile(path, content, callback) {
+    postData('file', path, content, callback);
 }
 
 function postData(type, objectPath, content, callback) {

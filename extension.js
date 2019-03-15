@@ -55,6 +55,20 @@ function activate(context) {
     });    
     context.subscriptions.push(uploadFileDisposable);
 
+    let uploadCurrentFile = vscode.commands.registerCommand('netsuite-upload.uploadCurrentFile', () => {
+        let editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            return;
+        }
+        
+        if (!editor.document.fileName) {
+            return;
+        }
+        
+        netSuiteBl.uploadFileByPath(editor.document.fileName);        
+    });    
+    context.subscriptions.push(uploadCurrentFile);
+
     let deleteFileDisposable = vscode.commands.registerCommand('netsuite-upload.deleteFile', (file) => {
         if (!file) {
             vscode.window.showErrorMessage(noFileSelectedErrorMessage);

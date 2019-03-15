@@ -27,16 +27,20 @@ function downloadFileFromNetSuite(file) {
     });
 }
 
-function uploadFileToNetSuite(file) {
-    var fileContent = fs.readFileSync(file.fsPath, 'utf8');
+function uploadFileByPath(filePath) {
+    var fileContent = fs.readFileSync(filePath, 'utf8');
     
-    nsRestClient.postFile(file, fileContent, function(data) {
+    nsRestClient.postFile(filePath, fileContent, function(data) {
         if (hasError(data)) return;
         
-        var relativeFileName = nsRestClient.getRelativePath(file.fsPath);
+        var relativeFileName = nsRestClient.getRelativePath(filePath);
 
         vscode.window.showInformationMessage('File "' + relativeFileName + '" uploaded.');
     });
+}
+
+function uploadFileToNetSuite(file) {
+    uploadFileByPath(file.fsPath);
 }
 
 function deleteFileInNetSuite(file) {
@@ -137,6 +141,7 @@ exports.downloadFileFromNetSuite = downloadFileFromNetSuite;
 exports.previewFileFromNetSuite = previewFileFromNetSuite;
 exports.downloadDirectoryFromNetSuite = downloadDirectoryFromNetSuite;
 exports.uploadFileToNetSuite = uploadFileToNetSuite;
+exports.uploadFileByPath = uploadFileByPath;
 exports.deleteFileInNetSuite = deleteFileInNetSuite;
 exports.addCustomDependencyToActiveFile = addCustomDependencyToActiveFile;
 exports.addNetSuiteDependencyToActiveFile = addNetSuiteDependencyToActiveFile;

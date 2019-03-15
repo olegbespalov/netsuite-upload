@@ -2,7 +2,7 @@
   "name": "netsuite-upload",
   "displayName": "NetSuite Upload (OAuth)",
   "description": "NetSuite Upload Extension used for managing of SuiteScript files",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "publisher": "tomastvrdy",
   "engines": {
     "vscode": "^1.5.0"
@@ -23,6 +23,7 @@
   "activationEvents": [
     "onCommand:netsuite-upload.downloadFile",
     "onCommand:netsuite-upload.uploadFile",
+    "onCommand:netsuite-upload.uploadCurrentFile",
     "onCommand:netsuite-upload.deleteFile",
     "onCommand:netsuite-upload.previewFile",
     "onCommand:netsuite-upload.downloadFolder",
@@ -86,6 +87,11 @@
         "category": "NSUpload"
       },
       {
+        "command": "netsuite-upload.uploadCurrentFile",
+        "title": "Push current file to NetSuite",
+        "category": "NSUpload"
+      },
+      {
         "command": "netsuite-upload.deleteFile",
         "title": "Delete file in NetSuite",
         "category": "NSUpload"
@@ -131,6 +137,12 @@
         {
           "when": "!resourceLangId",
           "command": "netsuite-upload.downloadFolder",
+          "group": "netsuite"
+        }
+      ],
+      "editor/context": [
+        {"when": "resourceLangId",
+          "command": "netsuite-upload.uploadCurrentFile",
           "group": "netsuite"
         }
       ]
